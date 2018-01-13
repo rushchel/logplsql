@@ -1,0 +1,151 @@
+LOG4PLSQL Installation
+**********************
+
+Create table TLOGLEVEL ...
+
+Table created.
+
+Insert rows into TLOGLEVEL ...
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
+Create table TLOG ...
+
+Table created.
+
+Create sequence SQ_STG ...
+
+Sequence created.
+
+Create package PLOGPARAM ...
+
+Package created.
+
+
+Package body created.
+
+Create package PLOG_OUT_TLOG ...
+
+Package created.
+
+
+Package body created.
+
+
+Installation of optional packages
+*********************************
+Please select the log outputs you want to install (y:yes - n:no)
+DBMS_OUTPUT (package PLOG_OUT_DBMS_OUTPUT):y
+Alert file (package PLOG_OUT_ALERT):y
+Trace file (package PLOG_OUT_TRACE):y
+Advanced queue (package PLOG_OUT_AQ):y
+Session info in V$SESSION (package PLOG_OUT_SESSION):y
+
+                                                                                
+                                                                                
+
+                                                                                
+                                                                                
+
+                                                                                
+                                                                                
+
+                                                                                
+                                                                                
+
+                                                                                
+                                                                                
+Create package PLOG_OUT_DBMS_OUTPUT ...
+
+Package created.
+
+
+Package body created.
+
+Create package PLOG_OUT_ALERT ...
+
+Package created.
+
+
+Package body created.
+
+Create package PLOG_OUT_TRACE ...
+
+Package created.
+
+
+Package body created.
+
+Create type T_LOG_QUEUE ...
+
+Type created.
+
+Create type T_ARRAY_LOG_QUEUE ...
+
+Type created.
+
+Create the queue table QTAB_LOG ...
+
+PL/SQL procedure successfully completed.
+
+Create the queue LOG_QUEUE in the table QTAB_LOG ...
+
+PL/SQL procedure successfully completed.
+
+Start the queue ...
+
+PL/SQL procedure successfully completed.
+
+Create package PLOG_OUT_AQ ...
+
+Package created.
+
+
+Package body created.
+
+Create package PLOG_OUT_SESSION ...
+
+Package created.
+
+
+Package body created.
+
+Create dynamically the package PLOG_INTERFACE ...
+
+Package created.
+
+
+PL/SQL procedure successfully completed.
+
+Create the main package PLOG ...
+
+Package created.
+
+
+Package body created.
+
+Create the view VLOG
+
+View created.
+
