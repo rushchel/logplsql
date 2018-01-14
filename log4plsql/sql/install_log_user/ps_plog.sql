@@ -51,6 +51,9 @@ PACKAGE             PLOG IS
 --   V3.3     Bertrand Caradec  22-APR-08 software logic divided in several packages
 --                                        output french comments translated in english
 --                                        comments added for each function
+--   V4.0.2   Rustam Shakirov   13-JAN-18 add constant C_ATRIBNAME_LEVEL
+--                                        add procedure set_global_level/get_global_level
+--                                        getDefaultContext: Used plsql_ccflags ENABLE_GCTX
 
 /*
  * Copyright (C) LOG4PLSQL project team. All rights reserved.
@@ -73,6 +76,9 @@ NOLEVEL         CONSTANT NUMBER       := -999.99 ;
 ------------------------------------------------------------------
 -- Constants (tools internal parameter)
 -------------------------------------------------------------------
+
+-- The name of the context attribute for the global default level
+C_ATRIBNAME_LEVEL constant varchar2(30) := 'plog_level';
 
 -- The OFF has the highest possible rank and is intended to turn off logging.
 LOFF   CONSTANT number := 10 ;
@@ -457,6 +463,12 @@ PROCEDURE purge
 (
     pDateMax      IN DATE DEFAULT NULL
 );
+
+procedure set_global_level(
+  p_lcode in tloglevel.lcode%type
+);
+
+function get_global_level return tloglevel.llevel%type;
 
 END;
 /

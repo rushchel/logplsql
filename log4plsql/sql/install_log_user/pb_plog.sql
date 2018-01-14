@@ -119,6 +119,7 @@ FUNCTION getDefaultContext
 --   Ver    Date        Autor             Comment
 --   -----  ----------  ---------------   --------------------------------------
 --   1.0    17.04.2008  Bertrand Caradec  Initial version
+--   1.0.1  13.01.2018  Rustam Shakirov   Used plsql_ccflags ENABLE_GCTX
 --******************************************************************************
 RETURN PLOGPARAM.LOG_CTX
 IS
@@ -126,7 +127,11 @@ IS
     lSECTION    TLOG.LSECTION%TYPE;
 BEGIN
     lSECTION := getCallStack;
+$if $$enable_gctx $then
+    newCTX := init (pSECTION => lSECTION, pLEVEL => get_global_level);
+$else
     newCTX := init (pSECTION => lSECTION);
+$end
 
     RETURN newCTX;
 END getDefaultContext;
@@ -2019,6 +2024,40 @@ EXCEPTION
        RETURN FALSE;
 END isPackageInstalled;
 
+--******************************************************************************
+--  NAME: set_global_level
+--  PARAMETERS:
+--    p_lcode - Level
+--  DESCRIPTION:
+--    Public. Sets the global level by writing to the context.
+--    Text code (TLOGLEVEL.LCODE) is written.
+--
+--   Ver    Date        Autor             Comment
+--   -----  ----------  ---------------   --------------------------------------
+--   1.0    13.01.2018  Rustam Shakirov   Initial version
+--******************************************************************************
+procedure set_global_level(
+  p_lcode in tloglevel.lcode%type
+) is
+begin
+  plog_gctx.set_log_ctx(p_atr => C_ATRIBNAME_LEVEL, p_val => p_lcode);
+end;
+
+--******************************************************************************
+--  NAME: get_global_level
+--  PARAMETERS:
+--  DESCRIPTION:
+--    Public. Gets the global level, extracting from the context.
+--    Returns the numeric level code (TLOGLEVEL.LLEVEL)
+--
+--   Ver    Date        Autor             Comment
+--   -----  ----------  ---------------   --------------------------------------
+--   1.0    13.01.2018  Rustam Shakirov   Initial version
+--******************************************************************************
+function get_global_level return tloglevel.llevel%type is
+begin
+  return plogparam.getTextInLevel(plog_gctx.get_log_ctx(C_ATRIBNAME_LEVEL));
+end;
 
 -- end of the package
 END;
