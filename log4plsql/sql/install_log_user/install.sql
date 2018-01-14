@@ -7,6 +7,8 @@
 --
 -- history : who                 created     comment
 --     v1    Bertrand Caradec   15-MAY-08    creation
+--     v1    Rustam Shakirov    13-JAN-18    added install package plog_gctx
+--     v1    Rustam Shakirov    14-JAN-18    added install context plog_ctx
 --                                     
 --
 -------------------------------------------------------------------
@@ -44,6 +46,10 @@ PROMPT Create sequence SQ_STG ...
 
 @@create_sequence_sq_stg
 
+PROMPT Create context PLOG_CTX ...
+
+@@create_context_plog_ctx
+
 PROMPT Create package PLOGPARAM ...
 
 @@ps_plogparam
@@ -54,6 +60,10 @@ PROMPT Create package PLOG_OUT_TLOG ...
 @@ps_plog_out_tlog
 @@pb_plog_out_tlog
 
+PROMPT Create package PLOG_GCTX ...
+
+@@ps_plog_gctx
+@@pb_plog_gctx
 
 -- installation of the optional packages
 SET FEEDBACK OFF
