@@ -9,7 +9,7 @@
 --
 -- history : who                 created     comment
 --     V1    Bertrand Caradec    15-MAY-08   Creation
---                                     
+--     V1    Rustam Shakirov     13-JAN-18   Added grant create any context
 --
 -------------------------------------------------------------------
 /*
@@ -41,6 +41,8 @@ GRANT CREATE TYPE TO &V_USER;
 GRANT CREATE PROCEDURE TO &V_USER;
 
 GRANT CREATE SEQUENCE TO &V_USER;
+
+grant create any context to &V_USER;
 
 -- set tablespace quota for the user
 ALTER USER &V_USER QUOTA 100M ON USERS;
